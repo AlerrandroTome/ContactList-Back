@@ -1,4 +1,5 @@
 ﻿using ContactList.Core;
+using ContactList.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.OData;
 using Microsoft.Net.Http.Headers;
@@ -46,7 +47,7 @@ namespace ContactList.Api.Configurations
                                                   .SelectMany(w => w.GetTypes())
                                                   .Where(w =>
                                                       w.FullName!.Contains("ContactList.Infrastructure.Entities")
-                                                      && w.GetInterfaces().Any(w => w.Name.Equals(nameof(BaseEntity)))
+                                                      && w.GetInterfaces().Any(w => w.Name.Equals(nameof(IODataEntity)))
                                                       && !w.IsInterface
                                                       && !w.IsAbstract
                                                   )

@@ -19,7 +19,7 @@ namespace ContactList.Api.Controllers
         public async Task<IActionResult> Login(LoginDto dto)
         {
             var response = await service.Login(dto);
-            return StatusCode(/*response.StatusCode*/200, response);
+            return StatusCode(response.StatusCode, response);
         }
     }
 }

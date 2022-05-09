@@ -10,8 +10,9 @@ namespace ContactList.Api.Configurations
         public static void AddDependencyInjectionSetup(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IManageLoginService, ManageLoginService>();
             services.AddScoped<IManageUserService, ManageUserService>();
+            services.AddScoped<IManageContactService, ManageContactService>();
+            services.AddScoped<IManageLoginService, ManageLoginService>();
             services.AddScoped<IManageTokenService, ManageTokenService>();
         }
     }

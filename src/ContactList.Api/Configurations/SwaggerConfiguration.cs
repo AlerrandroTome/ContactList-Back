@@ -10,14 +10,14 @@ namespace ContactListWebApi.Configurations
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContactListApi", Description = "This is a simple contact list web api", Version = "v1" });
 
-                c.AddSecurityDefinition("", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Description = "Authentication Token of Library",
+                    Description = "Authentication Token of ContactList",
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -28,7 +28,7 @@ namespace ContactListWebApi.Configurations
                             Reference = new OpenApiReference
                             {
                                 Type = ReferenceType.SecurityScheme,
-                                Id = "",
+                                Id = "Bearer",
                             }
                         },
                         new string[] { }

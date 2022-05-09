@@ -11,7 +11,7 @@ namespace ContactList.Api.Configurations
                         options.SuppressModelStateInvalidFilter = true
                     );
 
-            services.AddMvc(options =>
+            services.AddMvcCore(options =>
             {
                 options.EnableEndpointRouting = true;
                 options.Filters.Add<ExceptionFilter>();

@@ -13,14 +13,14 @@ configuration.Bind(key: nameof(connectionStrings), connectionStrings);
 var jwtSettings = new JwtSettings();
 configuration.Bind(key: nameof(jwtSettings), jwtSettings);
 
-builder.Services.AddRouting();
 builder.Services.AddOdataSetup();
-builder.Services.AddAppSettingsSetup(configuration);
+builder.Services.AddDatabaseSetup(connectionStrings.ConnString);
 builder.Services.AddDependencyInjectionSetup();
+builder.Services.AddAppSettingsSetup(configuration);
 builder.Services.AddAutoMapper(typeof(ContactList.Infrastructure.Settings.AutoMapper));
 builder.Services.AddMiddlewareSetup();
+builder.Services.AddRouting();
 builder.Services.AddFluentValidationSetup();
-builder.Services.AddControllers();
 builder.Services.AddAuthenticationSetup(jwtSettings.Secret, jwtSettings);
 builder.Services.AddSwaggerServiceSetup();
 builder.Services.AddHttpClient();

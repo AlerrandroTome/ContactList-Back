@@ -10,11 +10,11 @@ namespace ContactList.Infrastructure.ModelConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.AddBaseModelConfiguration();
-            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.Name).HasMaxLength(200).IsRequired();
             builder.Property(p => p.Email).HasMaxLength(200);
             builder.Property(p => p.PhoneNumber).HasMaxLength(20);
             builder.Property(p => p.WhatsappNumber).HasMaxLength(20);
-            builder.Property(p => p.PhoneNumberIsAlreadyWhatsapp);
+            builder.Property(p => p.PhoneNumberIsWhatsapp);
 
             builder.HasOne(p => p.User)
                    .WithMany(p => p.Contacts)

@@ -4,7 +4,6 @@
     {
         public string? UserName { get; set; }
         public string? Password { get; set; }
-
-        public ICollection<Guid> Contacts { get; set; } = new List<Guid>();
+        public string? Name { get; set; }
     }
 }

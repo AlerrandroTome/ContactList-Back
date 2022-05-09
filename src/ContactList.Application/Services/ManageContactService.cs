@@ -3,7 +3,6 @@ using ContactList.Application.Interfaces;
 using ContactList.Core.Dtos.Contact;
 using ContactList.Core.Dtos.Response;
 using ContactList.Core.Interfaces;
-using ContactList.Infrastructure.Context;
 using ContactList.Infrastructure.Entities;
 
 namespace ContactList.Application.Services
@@ -12,15 +11,12 @@ namespace ContactList.Application.Services
     {
         private readonly IMapper mapper;
         private readonly IUnitOfWork uow;
-        private readonly ContactListDbContext dbContext;
 
         public ManageContactService(IMapper mapper, 
-            IUnitOfWork uow, 
-            ContactListDbContext dbContext)
+            IUnitOfWork uow)
         {
             this.mapper = mapper;
             this.uow = uow;
-            this.dbContext = dbContext;
         }
 
         public async Task<Response<ContactDto>> Create(CreateContactDto entityDto)
