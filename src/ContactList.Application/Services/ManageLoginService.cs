@@ -24,7 +24,7 @@ namespace ContactList.Application.Services
             var response = new Response<string>();
             var user = await uow.Repository<User>()
                                 .Get()
-                                .FirstOrDefaultAsync(w => w.UserName.Equals(credentials.Login) && w.Password.Equals(credentials.Password))
+                                .FirstOrDefaultAsync(w => w.UserName.Equals(credentials.UserName) && w.Password.Equals(credentials.Password))
                                 .ConfigureAwait(false);
 
             if (user != null)
