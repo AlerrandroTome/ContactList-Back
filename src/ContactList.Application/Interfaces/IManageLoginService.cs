@@ -5,6 +5,6 @@ namespace ContactList.Application.Interfaces
 {
     public interface IManageLoginService
     {
-        Task<Response<string>> Login(LoginDto credentials);
+        Task<Response<LoginResponseDto>> Login(LoginDto credentials);
     }
 }

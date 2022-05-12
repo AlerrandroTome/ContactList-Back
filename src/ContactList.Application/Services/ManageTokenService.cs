@@ -1,4 +1,5 @@
 ﻿using ContactList.Application.Interfaces;
+using ContactList.Core.Dtos.Login;
 using ContactList.Core.Dtos.Response;
 using ContactList.Core.Interfaces;
 using ContactList.Infrastructure.Entities;
@@ -18,7 +19,7 @@ namespace ContactList.Application.Services
             this.jwt = jwt;
         }
 
-        public Response<string> GenerateToken(User user)
+        public Response<LoginResponseDto> GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(jwt.Secret);
@@ -28,8 +29,8 @@ namespace ContactList.Application.Services
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("Id", user.Id.ToString()),
-                    new Claim("Login", user.UserName),
-                    new Claim("Active", user.Name.ToString()),
+                    new Claim("Name", user.Name),
+                    new Claim("UserName", user.UserName),
                     new Claim("ExpirationDate", expirationDate.ToString("dd/MM/yyyy HH:mm:ss"))
                 }),
                 Expires = expirationDate,
@@ -39,8 +40,13 @@ namespace ContactList.Application.Services
                 Issuer = jwt.Issuer
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            var response = new Response<string>();
-            response.Data = tokenHandler.WriteToken(token);
+            var response = new Response<LoginResponseDto>();
+            response.Data = new LoginResponseDto() {
+                Token = tokenHandler.WriteToken(token),
+                Id = user.Id,
+                Name = user.Name,
+                UserName = user.UserName
+            };
             return response;
         }
     }

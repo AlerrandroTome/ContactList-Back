@@ -16,8 +16,7 @@ namespace ContactList.Infrastructure.ModelConfigurations
 
             builder.HasMany(m => m.Contacts)
                    .WithOne(o => o.User)
-                   .HasForeignKey(fk => fk.UserId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey(fk => fk.UserId);
         }
     }
 }

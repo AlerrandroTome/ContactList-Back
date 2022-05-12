@@ -18,10 +18,8 @@ namespace ContactList.Application.Services
             this.tokenService = tokenService;
         }
 
-        public async Task<Response<string>> Login(LoginDto credentials)
+        public async Task<Response<LoginResponseDto>> Login(LoginDto credentials)
         {
-            //credentials.Password = credentials.Password.Atob();
-            var response = new Response<string>();
             var user = await uow.Repository<User>()
                                 .Get()
                                 .FirstOrDefaultAsync(w => w.UserName.Equals(credentials.UserName) && w.Password.Equals(credentials.Password))

@@ -9,9 +9,9 @@ namespace ContactList.Infrastructure.Validators.Login
         {
             RuleFor(w => w.UserName).NotEmpty()
                      .NotNull()
-                     .MinimumLength(5);
+                     .MinimumLength(1);
 
-            RuleFor(w => w.Password).NotEmpty().Length(4, 10);
+            RuleFor(w => w.Password).NotEmpty().Length(1, 10);
         }
     }
 }
